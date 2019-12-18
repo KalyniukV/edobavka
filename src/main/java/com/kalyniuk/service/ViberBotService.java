@@ -32,8 +32,8 @@ public class ViberBotService {
 
 
     public void onMessageReceived(IncomingMessageEvent event, Message message, Response response) {
-        System.err.println("ViberBotService.onMessageReceived message = " + message.getTrackingData().get("text"));
-        switch (message.getTrackingData().get("text").toString()) {
+        System.err.println("ViberBotService.onMessageReceived message = " + message.getMapRepresentation().get("text"));
+        switch (message.getMapRepresentation().get("text").toString()) {
             case "100":
                 response.send(ecodeService.get100());
                 break;
