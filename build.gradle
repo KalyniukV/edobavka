@@ -10,8 +10,13 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.springframework.boot" version "2.2.0.RELEASE"
+}
+
 apply plugin: 'java'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
 
 group 'com.kalyniuk'
 version '1.0-SNAPSHOT'
