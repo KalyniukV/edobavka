@@ -26,24 +26,26 @@ import java.util.concurrent.Future;
 public class ViberBotService {
     private static Logger logger = LoggerFactory.getLogger(ViberBotService.class);
 
+
     @Autowired
     private EcodeService ecodeService;
 
 
     public void onMessageReceived(IncomingMessageEvent event, Message message, Response response) {
         logger.debug("ViberBotService.onMessageReceived message = " + message);
+        System.err.println("ViberBotService.onMessageReceived message = " + message);
         switch (message.toString()) {
             case "100":
                 response.send(ecodeService.get100());
                 break;
             case "200":
-                ecodeService.get200();
+                response.send(ecodeService.get200());
                 break;
             case "300":
-                ecodeService.get300();
+                response.send(ecodeService.get300());
                 break;
             case "400":
-                ecodeService.get400();
+                response.send(ecodeService.get400());
                 break;
             default:
                 response.send("невідома добавка");

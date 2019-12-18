@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="de3ba3f2-7323-4d9f-bc4e-690a0d5b422c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kalyniuk/config/BotStartupConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kalyniuk/config/BotStartupConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kalyniuk/service/ViberBotService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kalyniuk/service/ViberBotService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
