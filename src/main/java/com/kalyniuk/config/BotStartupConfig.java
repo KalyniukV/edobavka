@@ -50,9 +50,9 @@ public class BotStartupConfig implements ApplicationListener<ApplicationReadyEve
         }
 
         bot.onMessageReceived((event, message, response) -> response.send(message));//viberService.onMessageReceived(event, message, response));
-        bot.onConversationStarted(event -> viberService.onConversationStarted(event));
-        bot.onSubscribe((event, response) -> viberService.onSubscribe(event, response));
-        bot.onUnsubscribe((event) -> viberService.onUnsubscribe(event));
+//        bot.onConversationStarted(event -> viberService.onConversationStarted(event));
+//        bot.onSubscribe((event, response) -> viberService.onSubscribe(event, response));
+//        bot.onUnsubscribe((event) -> viberService.onUnsubscribe(event));
     }
 
     @PostMapping(value = "/", produces = "application/json")

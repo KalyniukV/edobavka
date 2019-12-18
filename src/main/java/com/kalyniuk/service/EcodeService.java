@@ -6,18 +6,18 @@ import org.springframework.stereotype.Service;
 public class EcodeService {
 
     String get100() {
-        return "e100";
+        return "Куркуміни. Куркумін, куркума довга";
     }
 
     String get200() {
-        return "e200";
+        return "Сорбінова кислота";
     }
 
     String get300() {
-        return "e300";
+        return "Аскорбінова кислота";
     }
 
     String get400() {
-        return "e400";
+        return "Альгінова кислота";
     }
 }
