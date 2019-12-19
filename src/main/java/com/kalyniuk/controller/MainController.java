@@ -17,7 +17,7 @@ public class MainController {
 
     @Inject
     private ViberBot bot;
-    
+
     @Value("${application.viber-bot.webhook-url}")
     private String webhookUrl;
 
@@ -34,9 +34,9 @@ public class MainController {
             bot.setWebhook(webhookUrl).get();
 
             System.out.println("=== MainController accountInfo = " + bot.getAccountInfo().get());
-            
+
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("=== MainController.sendMessage error = " + e.getMessage() + "\n" + e);
         }
 
         return "index";
