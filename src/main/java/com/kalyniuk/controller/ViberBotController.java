@@ -30,6 +30,9 @@ public class ViberBotController {
                            @RequestHeader("X-Viber-Content-Signature") String serverSideSignature)
             throws ExecutionException, InterruptedException, IOException {
         System.out.println("=== ViberBotController incoming ===");
+        System.out.println("=== ViberBotController incoming json = " + json);
+        System.out.println("=== ViberBotController incoming serverSideSignature = " + serverSideSignature);
+        
         com.google.common.base.Preconditions.checkState(viberSignatureValidator.isSignatureValid(serverSideSignature, json), "invalid signature");
         @javax.annotation.Nullable InputStream response = bot.incoming(Request.fromJsonString(json)).get();
         return response != null ? CharStreams.toString(new InputStreamReader(response, Charsets.UTF_16)) : null;
