@@ -59,6 +59,7 @@ public class BotStartupConfig implements ApplicationListener<ApplicationReadyEve
     public String incoming(@RequestBody String json,
                            @RequestHeader("X-Viber-Content-Signature") String serverSideSignature)
             throws ExecutionException, InterruptedException, IOException {
+        System.out.println("=== BotStartupConfig incoming ===");
         Preconditions.checkState(signatureValidator.isSignatureValid(serverSideSignature, json), "invalid signature");
         @Nullable InputStream response = bot.incoming(Request.fromJsonString(json)).get();
         return response != null ? CharStreams.toString(new InputStreamReader(response, Charsets.UTF_16)) : null;
