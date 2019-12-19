@@ -16,7 +16,7 @@ public class MainController {
         return "index";
     }
 
-    @PostMapping("/")
+    @PostMapping("/webhook")
     public String sendMessage(@RequestParam String message) {
         System.out.println("send message = " + message);        
         return "index";
