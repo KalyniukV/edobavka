@@ -31,7 +31,7 @@ public class ViberBotService {
     private EcodeService ecodeService;
 
     public Future<Optional<Message>> onConversationStarted(IncomingConversationStartedEvent event) {
-        System.err.println("ViberBotService.onMessageReceived onConversationStarted = " + event);
+        System.err.println("ViberBotService.onConversationStarted user id = " + event.getUser().getId() + " name = " + event.getUser().getName());
         return Futures.immediateCheckedFuture(Optional.of(new TextMessage("Привіт " + event.getUser().getName())));
     }
 
