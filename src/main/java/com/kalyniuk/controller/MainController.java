@@ -10,5 +10,11 @@ public class MainController {
     public String main() {
         return "index";
     }
+    
+    @PostMapping("/")
+    public String sendMessage(@RequestParam String message) {
+        System.out.println("send message = " + message);
+        return "index";
+    }
 
 }
