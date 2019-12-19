@@ -43,11 +43,11 @@ public class BotStartupConfig implements ApplicationListener<ApplicationReadyEve
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
-//        try {
-//            bot.setWebhook(webhookUrl).get();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            bot.setWebhook(webhookUrl).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         bot.onMessageReceived((event, message, response) -> viberService.onMessageReceived(event, message, response));
         bot.onConversationStarted(event -> viberService.onConversationStarted(event));
