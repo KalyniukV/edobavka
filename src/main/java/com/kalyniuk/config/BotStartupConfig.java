@@ -54,7 +54,7 @@ public class BotStartupConfig implements ApplicationListener<ApplicationReadyEve
 //        bot.onSubscribe((event, response) -> viberService.onSubscribe(event, response));
 //        bot.onUnsubscribe((event) -> viberService.onUnsubscribe(event));
     }
-/*
+
     @PostMapping(value = "/", produces = "application/json")
     public String incoming(@RequestBody String json,
                            @RequestHeader("X-Viber-Content-Signature") String serverSideSignature)
@@ -64,5 +64,5 @@ public class BotStartupConfig implements ApplicationListener<ApplicationReadyEve
         @Nullable InputStream response = bot.incoming(Request.fromJsonString(json)).get();
         return response != null ? CharStreams.toString(new InputStreamReader(response, Charsets.UTF_16)) : null;
     }
-*/
+
 }
