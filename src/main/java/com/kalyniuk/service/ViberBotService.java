@@ -30,6 +30,10 @@ public class ViberBotService {
     @Autowired
     private EcodeService ecodeService;
 
+    public Future<Optional<Message>> onConversationStarted(IncomingConversationStartedEvent event) {
+        System.err.println("ViberBotService.onMessageReceived onConversationStarted = " + event);
+        return Futures.immediateCheckedFuture(Optional.of(new TextMessage("Привіт " + event.getUser().getName())));
+    }
 
     public void onMessageReceived(IncomingMessageEvent event, Message message, Response response) {
         System.err.println("ViberBotService.onMessageReceived message = " + message.getMapRepresentation().get("text"));
