@@ -23,8 +23,14 @@ public class MainController {
 
     @PostMapping("/")
     public String sendMessage(@RequestParam String text) {
-        System.out.println("send text = " + text);
-        bot.onTextMessage("(hi|hello)", (event, message, response) -> response.send(text + " " + event.getSender().getName()));
+        try {
+            System.out.println("send text = " + text);
+            ListenableFuture<ApiResponse> userDetails = bot.getUserDetails("OGdRykRL2GmdB2xKg+NE5g==");
+            System.out.println("userDetails = " + userDetails.toString());
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage() + "\n" + e);
+        }
         return "index";
     }
 }
