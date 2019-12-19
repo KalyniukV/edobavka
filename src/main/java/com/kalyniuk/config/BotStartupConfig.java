@@ -50,7 +50,7 @@ public class BotStartupConfig implements ApplicationListener<ApplicationReadyEve
         }
 
         bot.onMessageReceived((event, message, response) -> viberService.onMessageReceived(event, message, response));
-//        bot.onConversationStarted(event -> viberService.onConversationStarted(event));
+        bot.onConversationStarted(event -> viberService.onConversationStarted(event));
 //        bot.onSubscribe((event, response) -> viberService.onSubscribe(event, response));
 //        bot.onUnsubscribe((event) -> viberService.onUnsubscribe(event));
     }
