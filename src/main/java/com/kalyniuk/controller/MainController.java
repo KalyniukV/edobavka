@@ -24,8 +24,8 @@ public class MainController {
 
     @PostMapping("/")
     public String sendMessage(@RequestParam String message) {
-        System.out.println("=== send message = " + message);
-        String jsonString = "{" +
+        System.out.println("=== send message = " + message);        
+        String jsonString = "{\"event\":\"message\""+
                 "\"receiver\":\"OGdRykRL2GmdB2xKg+NE5g==\"," +
                 "\"min_api_version\":1," +
                 "\"sender\":{\n" +
