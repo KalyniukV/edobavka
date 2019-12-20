@@ -1,8 +1,7 @@
 package com.kalyniuk.controller;
 
-
+import com.viber.bot.Request;
 import com.viber.bot.api.ViberBot;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,27 +17,26 @@ public class MainController {
     @Inject
     private ViberBot bot;
 
-    @Value("${application.viber-bot.webhook-url}")
-    private String webhookUrl;
-
     @GetMapping("/")
     public String main() {
-        System.out.println("=== MainController.main() ===");
         return "index";
     }
 
     @PostMapping("/")
-    public String sendMessage(@RequestParam String text) {
-        System.out.println("=== MainController.sendMessage text = " + text);
-        try {
-            bot.setWebhook(webhookUrl).get();
-
-            System.out.println("=== MainController accountInfo = " + bot.getAccountInfo().get());
-
-        } catch (Exception e) {
-            System.out.println("=== MainController.sendMessage error = " + e.getMessage() + "\n" + e);
-        }
-
+    public String sendMessage(@RequestParam String message) {
+        System.out.println("send message = " + message);
+        String jsonString = "{" +
+                "   \"receiver\":\"OGdRykRL2GmdB2xKg+NE5g==\"," +
+                "   \"min_api_version\":1," +
+                "   \"sender\":{\n" +
+                "      \"name\":\"edobavka\"," +
+                "      \"avatar\":\"https://images-na.ssl-images-amazon.com/images/I/51-aTeYbibL._SY355_.png\"" +
+                "   },\n" +
+                "   \"tracking_data\":\"tracking data\"," +
+                "   \"type\":\"text\"," +
+                "   \"text\":\"Hello world!\"" +
+                "}";
+        bot.incoming(Request.fromJsonString(jsonString));
         return "index";
     }
 }
