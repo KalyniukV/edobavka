@@ -44,6 +44,7 @@ public class BotStartupConfig implements ApplicationListener<ApplicationReadyEve
     @Override
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         try {
+            System.out.println("=== BotStartupConfig onApplicationEvent before setWebhook ===");
             bot.setWebhook(webhookUrl).get();
         } catch (Exception e) {
             e.printStackTrace();
