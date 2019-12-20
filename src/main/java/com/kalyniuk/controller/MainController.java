@@ -1,21 +1,27 @@
 package com.kalyniuk.controller;
 
-import com.viber.bot.Request;
-import com.viber.bot.api.ViberBot;
+import com.google.common.collect.ImmutableMap;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
-import javax.inject.Inject;
+import java.util.Map;
 
 
 @Controller
 public class MainController {
 
-    @Inject
-    private ViberBot bot;
+    private static final String URL = "https://chatapi.viber.com/pa/send_message";
+    private static final String VIBER_HEADER = "X-Viber-Auth-Token";
+
+    @Value("${application.viber-bot.auth-token}")
+    private  String authorizationToken;
 
     @GetMapping("/")
     public String main() {
@@ -24,20 +30,18 @@ public class MainController {
 
     @PostMapping("/")
     public String sendMessage(@RequestParam String message) {
-        System.out.println("=== send message = " + message);
-        String jsonString = "{\"event\":\"message\","+
-                "\"receiver\":\"OGdRykRL2GmdB2xKg+NE5g==\"," +
-                "\"min_api_version\":1," +
-                "\"sender\":{\n" +
-                "\"name\":\"edobavka\"," +
-                "\"avatar\":\"https://images-na.ssl-images-amazon.com/images/I/51-aTeYbibL._SY355_.png\"" +
-                "}," +
-                "\"tracking_data\":\"tracking data\"," +
-                "\"type\":\"text\"," +
-                "\"text\":\"Hello world!\"" +
-                "}";
-        System.out.println("=== jsonString = " + jsonString);
-        bot.incoming(Request.fromJsonString(jsonString));
+        HttpHeaders headers = new HttpHeaders();
+        headers.set(VIBER_HEADER, authorizationToken);
+        String userId = "OGdRykRL2GmdB2xKg+NE5g==";
+        Map<String, Object> msg = ImmutableMap.of(
+                "receiver", userId,
+                "type", "text",
+                "text", message,
+                "sender", ImmutableMap.of("name", "edobavka")
+        );
+        HttpEntity<Map> request = new HttpEntity<>(msg, headers);
+
+        new RestTemplate().postForEntity(URL, request, Map.class);
         return "index";
     }
 }
