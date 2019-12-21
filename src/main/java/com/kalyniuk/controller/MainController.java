@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
+    private String userId = "OGdRykRL2GmdB2xKg+NE5g==";
 
     @Autowired
     ViberBotService service;
@@ -23,7 +24,7 @@ public class MainController {
 
     @PostMapping("/")
     public String sendMessage(@RequestParam String message) {
-        service.sendMessage(message);
+        service.sendMessage(userId, message);
         return "index";
     }
 }
