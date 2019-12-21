@@ -61,10 +61,10 @@ public class ViberBotService {
         }
     }
 
-    public void sendMessage(String message) {
+    public void sendMessage(String userId, String message) {
         HttpHeaders headers = new HttpHeaders();
         headers.set(VIBER_HEADER, authorizationToken);
-        String userId = "OGdRykRL2GmdB2xKg+NE5g==";
+
         Map<String, Object> msg = ImmutableMap.of(
                 "receiver", userId,
                 "type", "text",
