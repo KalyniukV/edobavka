@@ -24,7 +24,13 @@ public class ViberBotController {
 
     @Inject
     private ViberSignatureValidator viberSignatureValidator;
-
+    
+    @PostMapping(value = "/webhook")
+    public String incoming(@RequestBody String json) {
+        System.out.println("=== ViberBotController incoming light ===");
+        bot.incoming(Request.fromJsonString(json)).get();
+    }
+/*
     @PostMapping(value = "/webhook", produces = "application/json")
     public String incoming(@RequestBody String json,
                            @RequestHeader("X-Viber-Content-Signature") String serverSideSignature)
@@ -37,5 +43,5 @@ public class ViberBotController {
         @javax.annotation.Nullable InputStream response = bot.incoming(Request.fromJsonString(json)).get();
         return response != null ? CharStreams.toString(new InputStreamReader(response, Charsets.UTF_16)) : null;
     }
-
+*/
 }
