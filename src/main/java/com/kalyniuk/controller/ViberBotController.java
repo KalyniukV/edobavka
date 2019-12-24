@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,24 +25,32 @@ public class ViberBotController {
 
     @Inject
     private ViberSignatureValidator viberSignatureValidator;
-    
-    @PostMapping(value = "/webhook")
-    public String incoming(@RequestBody String json) {
-        System.out.println("=== ViberBotController incoming light ===");
-        bot.incoming(Request.fromJsonString(json)).get();
-    }
-/*
+
     @PostMapping(value = "/webhook", produces = "application/json")
     public String incoming(@RequestBody String json,
                            @RequestHeader("X-Viber-Content-Signature") String serverSideSignature)
             throws ExecutionException, InterruptedException, IOException {
-        System.out.println("=== ViberBotController incoming ===");
-        System.out.println("=== ViberBotController incoming json = " + json);
-        System.out.println("=== ViberBotController incoming serverSideSignature = " + serverSideSignature);
-        
         com.google.common.base.Preconditions.checkState(viberSignatureValidator.isSignatureValid(serverSideSignature, json), "invalid signature");
         @javax.annotation.Nullable InputStream response = bot.incoming(Request.fromJsonString(json)).get();
+getStream(response);
         return response != null ? CharStreams.toString(new InputStreamReader(response, Charsets.UTF_16)) : null;
     }
-*/
+    
+    private void getStream(InputStream inputStream) {
+        System.out.println("=== getStream ===");
+        try {
+            InputStreamReader isReader = new InputStreamReader(inputStream);
+            //Creating a BufferedReader object
+            BufferedReader reader = new BufferedReader(isReader);
+            StringBuffer sb = new StringBuffer();
+            String str;
+            while((str = reader.readLine())!= null){
+                sb.append(str);
+            }
+            System.out.println(sb.toString());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 }
