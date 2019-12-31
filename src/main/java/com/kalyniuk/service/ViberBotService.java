@@ -36,12 +36,12 @@ public class ViberBotService {
     private EcodeService ecodeService;
 
     public Future<Optional<Message>> onConversationStarted(IncomingConversationStartedEvent event) {
-        System.out.println("ViberBotService.onConversationStarted user id = " + event.getUser().getId() + " name = " + event.getUser().getName());
+        System.out.println("=== ViberBotService.onConversationStarted user id = " + event.getUser().getId() + " name = " + event.getUser().getName());
         return Futures.immediateCheckedFuture(Optional.of(new TextMessage("Привіт " + event.getUser().getName())));
     }
 
     public void onMessageReceived(IncomingMessageEvent event, Message message, Response response) {
-        System.out.println("ViberBotService.onMessageReceived message = " + message.getMapRepresentation().get("text"));
+        System.out.println("=== ViberBotService.onMessageReceived message = " + message.getMapRepresentation().get("text"));
 
         switch (message.getMapRepresentation().get("text").toString()) {
             case "100":
